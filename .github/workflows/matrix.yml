@@ -16,3 +16,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: node -v
+      - if: github.ref == 'refs/heads/main'
+        run: echo "This only runs when the push is on main"
+      - if: failure()
+        run: echo "This only runs if a previous step failed"
